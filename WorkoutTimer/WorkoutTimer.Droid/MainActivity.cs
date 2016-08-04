@@ -23,6 +23,7 @@ namespace WorkoutTimer.Droid
 			LoadApplication(new App());
 
 			//test
+			// new test
 		}
 	}
 }
