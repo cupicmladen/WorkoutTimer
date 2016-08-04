@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkoutTimer.ViewModels;
 using Xamarin.Forms;
 
 namespace WorkoutTimer
@@ -12,6 +13,8 @@ namespace WorkoutTimer
 		public MainPage()
 		{
 			InitializeComponent();
+
+			BindingContext = new MainViewModel();
 		}
 	}
 }

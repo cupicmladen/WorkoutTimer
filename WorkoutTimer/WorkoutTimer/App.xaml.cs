@@ -13,7 +13,7 @@ namespace WorkoutTimer
 		{
 			InitializeComponent();
 
-			MainPage = new WorkoutTimer.MainPage();
+			MainPage = new MainPage();
 		}
 
 		protected override void OnStart()
