@@ -43,6 +43,7 @@
     </Compile>
     <Compile Include="Models\Time.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\TabControls.cs" />
     <Compile Include="UserControls\TimerControl.xaml.cs">
       <DependentUpon>TimerControl.xaml</DependentUpon>
     </Compile>
