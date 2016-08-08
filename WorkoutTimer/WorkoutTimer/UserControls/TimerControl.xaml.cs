@@ -13,6 +13,11 @@ namespace WorkoutTimer.UserControls
 		public TimerControl()
 		{
 			InitializeComponent();
+
+			for (int i = 0; i < 60; i++)
+			{
+				SecondsPicker.Items.Add(i.ToString("00"));
+			}
 		}
 
 		public static readonly BindableProperty MinutesProperty = BindableProperty.Create<TimerControl, int>(s => s.Minutes, 0);

@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:WorkoutTimer"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              xmlns:userControls="clr-namespace:WorkoutTimer.UserControls;assembly=WorkoutTimer"
+             xmlns:models="clr-namespace:WorkoutTimer.Models;assembly=WorkoutTimer"
              x:Class="WorkoutTimer.MainPage">
   <Grid>
     <Grid.ColumnDefinitions>
@@ -15,16 +16,17 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition/>
+      <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
     <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
       <Label Text="Rest between exercises" VerticalOptions="Center" TextColor="Black"/>
-      <userControls:TimerControl/>
+      <userControls:TimerControl Minutes="{Binding Settings.SetRest.Minutes}" Seconds="{Binding Settings.SetRest.Seconds}"/>
     </StackLayout>
     <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Spacing="40">
       <Label Text="Rest between sets" VerticalOptions="Center" TextColor="Black"/>
-      <userControls:TimerControl/>
+      <userControls:TimerControl Minutes="{Binding Settings.ExerciseRest.Minutes}" Seconds="{Binding Settings.ExerciseRest.Seconds}"/>
     </StackLayout>
-    <userControls:TabsEx Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" SelectedTabIndex="1" SelectedColor="Aqua" UnselectedColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <userControls:TabsEx Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" SelectedColor="Aqua" UnselectedColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
       <userControls:TabButtonsEx Orientation="Horizontal" Spacing="-8">
         <userControls:TabButtonEx
           Text="Monday"
@@ -46,8 +48,8 @@
           FontSize="13" 
           TextColor="Black"/>
       </userControls:TabButtonsEx>
-      <userControls:TabEx IsVisible="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Pink">
-        <Grid>
+      <userControls:TabEx IsVisible="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid Padding="10">
           <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -55,53 +57,82 @@
             <RowDefinition/>
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition />
             <ColumnDefinition Width="30"/>
             <ColumnDefinition/>
           </Grid.ColumnDefinitions>
-          <Label Text="Bench press"/>
-          <Label Text="Incline bench press" Grid.Row="1"/>
-          <Label Text="Dumbbell flyes" Grid.Row="2"/>
-          <Label Text="Chest dips" Grid.Row="3"/>
-          <Label Text="5" Grid.Column="1"/>
-          <Label Text="5" Grid.Column="1" Grid.Row="1"/>
-          <Label Text="5" Grid.Column="1" Grid.Row="2"/>
-          <Label Text="5" Grid.Column="1" Grid.Row="3"/>
-          <Stepper Grid.Column="2"/>
-          <Stepper Grid.Column="2" Grid.Row="1"/>
-          <Stepper Grid.Column="2" Grid.Row="2"/>
-          <Stepper Grid.Column="2" Grid.Row="3"/>
+          <Label Text="Bench press" VerticalOptions="Center"/>
+          <Label Text="Incline bench press" Grid.Row="1" VerticalOptions="Center"/>
+          <Label Text="Dumbbell flyes" Grid.Row="2" VerticalOptions="Center"/>
+          <Label Text="Chest dips" Grid.Row="3" VerticalOptions="Center"/>
+          <Label BindingContext="{x:Reference Name=StepperM1}" Text="{Binding Value}" Grid.Column="1" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Label BindingContext="{x:Reference Name=StepperM2}" Text="{Binding Value}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Label BindingContext="{x:Reference Name=StepperM3}" Text="{Binding Value}" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Label BindingContext="{x:Reference Name=StepperM4}" Text="{Binding Value}" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Stepper x:Name="StepperM1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.BenchPress}"/>
+          <Stepper x:Name="StepperM2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.InclineBench}"/>
+          <Stepper x:Name="StepperM3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.DumbbellFlyes}"/>
+          <Stepper x:Name="StepperM4" Grid.Column="2" Grid.Row="3" VerticalOptions="Center" Value="{Binding Settings.ChestDips}"/>
         </Grid>
       </userControls:TabEx>
-
-      <userControls:TabEx IsVisible="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Yellow">
-        <Grid>
+      <userControls:TabEx IsVisible="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid Padding="10">
           <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Label Text="Squats" VerticalOptions="Center"/>
+          <Label Text="Leg extension" Grid.Row="1" VerticalOptions="Center"/>
+          <Label Text="Front squats" Grid.Row="2" VerticalOptions="Center"/>
+          <Label BindingContext="{x:Reference Name=StepperW1}" Text="{Binding Value}" Grid.Column="1" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Label BindingContext="{x:Reference Name=StepperW2}" Text="{Binding Value}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Label BindingContext="{x:Reference Name=StepperW3}" Text="{Binding Value}" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Stepper x:Name="StepperW1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.Squats}"/>
+          <Stepper x:Name="StepperW2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.LegExtension}"/>
+          <Stepper x:Name="StepperW3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.FrontSquats}"/>
+        </Grid>
+      </userControls:TabEx>
+      <userControls:TabEx IsVisible="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid Padding="10">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-          </Grid.ColumnDefinitions>
-        </Grid>
-      </userControls:TabEx>
-      <userControls:TabEx IsVisible="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Aqua">
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-          </Grid.RowDefinitions>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="30"/>
             <ColumnDefinition/>
           </Grid.ColumnDefinitions>
+          <Label Text="Dead-lifts" VerticalOptions="Center"/>
+          <Label Text="Reverse leg extension" Grid.Row="1" VerticalOptions="Center"/>
+          <Label Text="Wide pull-ups" Grid.Row="2" VerticalOptions="Center"/>
+          <Label Text="Narrow pull-ups" Grid.Row="3" VerticalOptions="Center"/>
+          <Label Text="Bent-over row" Grid.Row="4" VerticalOptions="Center"/>
+          <Label BindingContext="{x:Reference Name=StepperF1}" Text="{Binding Value}" Grid.Column="1" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Label BindingContext="{x:Reference Name=StepperF2}" Text="{Binding Value}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Label BindingContext="{x:Reference Name=StepperF3}" Text="{Binding Value}" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Label BindingContext="{x:Reference Name=StepperF4}" Text="{Binding Value}" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Label BindingContext="{x:Reference Name=StepperF5}" Text="{Binding Value}" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" FontAttributes="Bold"/>
+          <Stepper x:Name="StepperF1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.DeadLifts}"/>
+          <Stepper x:Name="StepperF2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.ReverseLegExtension}"/>
+          <Stepper x:Name="StepperF3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.WidePullUps}"/>
+          <Stepper x:Name="StepperF4" Grid.Column="2" Grid.Row="3" VerticalOptions="Center" Value="{Binding Settings.NarrowPullUps}"/>
+          <Stepper x:Name="StepperF5" Grid.Column="2" Grid.Row="4" VerticalOptions="Center" Value="{Binding Settings.BentOverRow}"/>
         </Grid>
       </userControls:TabEx>
     </userControls:TabsEx>
+    <Grid Grid.Row="4" Grid.Column="1">
+      <Button Text="Exit" HorizontalOptions="Start" WidthRequest="90" HeightRequest="40" Command="{Binding ExitCommand}"/>
+      <Button Text="OK" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="90" HeightRequest="45" Command="{Binding NavigateToSecondPageCommand}"/>
+    </Grid>
   </Grid>
 </ContentPage>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkoutTimer.Models;
+using WorkoutTimer.ViewModels;
 using Xamarin.Forms;
 
 namespace WorkoutTimer.UserControls
@@ -118,6 +120,9 @@ namespace WorkoutTimer.UserControls
 				tb.IsVisible = false;
 
 			SelectedTabEx.IsVisible = true;
+
+			if(BindingContext != null)
+				(BindingContext as MainViewModel).Settings.SelectedDay = (Day)SelectedTabIndex;
 		}
 	}
 }

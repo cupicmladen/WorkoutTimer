@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WorkoutTimer.ViewModels;
+﻿using WorkoutTimer.ViewModels;
 using Xamarin.Forms;
 
 namespace WorkoutTimer
@@ -15,6 +10,8 @@ namespace WorkoutTimer
 			InitializeComponent();
 
 			BindingContext = new MainViewModel();
+
+			NavigationPage.SetHasNavigationBar(this, false);
 		}
 	}
 }
