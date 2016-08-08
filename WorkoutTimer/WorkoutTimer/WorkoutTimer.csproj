@@ -46,6 +46,7 @@
     <Compile Include="SecondPage.xaml.cs">
       <DependentUpon>SecondPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CircularProgress.cs" />
     <Compile Include="UserControls\TabControls.cs" />
     <Compile Include="UserControls\TimerControl.xaml.cs">
       <DependentUpon>TimerControl.xaml</DependentUpon>

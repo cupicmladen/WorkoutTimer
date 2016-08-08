@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:userControls="clr-namespace:WorkoutTimer.UserControls;assembly=WorkoutTimer"
              x:Class="WorkoutTimer.SecondPage">
   
   <Grid>
@@ -8,15 +9,39 @@
       <ColumnDefinition Width="10"/>
       <ColumnDefinition/>
       <ColumnDefinition/>
+    <ColumnDefinition Width="10"/>
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="20"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
-      <RowDefinition/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition />
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
-  <Label Text="Monday" Grid.Row="1" Grid.Column="1"/>
-  <Label Text="27:56" Grid.Row="1" Grid.Column="2"/>
+    <Label Text="Monday" Grid.Row="1" Grid.Column="1" FontAttributes="Bold" Margin="0,0,0,10" />
+    <Label Text="27:56" Grid.Row="1" Grid.Column="2" HorizontalOptions="End" FontAttributes="Bold"/>
+    <BoxView HeightRequest="1" Grid.Row="2" Grid.ColumnSpan="4" Color="Black"/>
+    <Label Text="Bench press" Grid.Row="3" Grid.Column="1" />
+    <Label Text="gdfsgfdsgfdsgdsfgdf" Grid.Row="4" Grid.Column="1" />
+  
+    <userControls:CircularProgress 
+      Grid.Row="5"
+      Grid.Column="1"
+      Grid.ColumnSpan="2"
+      Indicator="{Binding Path=Value}"
+      MaxValueIndicator="360"
+      StrokeColor="#32ff0000"
+      IndicatorStrokeColor="#AAff0000"
+      StrokeWidth="8"
+      Text="00:42"
+      TextColor="White"
+      Padding="8"/>
+    
+    <Button Text="Reset" Grid.Column="2" Grid.Row="6" HorizontalOptions="End" WidthRequest="90" HeightRequest="40"/>
+    <Button Text="Back" Grid.Row="7" Grid.Column="1" WidthRequest="90" HeightRequest="40" HorizontalOptions="Start"/>
   </Grid>
 
 </ContentPage>
