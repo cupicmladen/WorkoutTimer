@@ -12,7 +12,7 @@ namespace WorkoutTimer.UserControls
 
 		public static readonly BindableProperty IndicatorProperty = BindableProperty.Create<CircularProgress, float>(s => s.Indicator, 0f);
 
-		public static readonly BindableProperty MaxValueIndicatorProperty = BindableProperty.Create<CircularProgress, int>(s => s.MaxValueIndicator, 100);
+		public static readonly BindableProperty MaxValueIndicatorProperty = BindableProperty.Create<CircularProgress, float>(s => s.MaxValueIndicator, 100f);
 
 		public static readonly BindableProperty TextProperty = BindableProperty.Create<CircularProgress, string>(s => s.Text, string.Empty);
 
@@ -44,9 +44,9 @@ namespace WorkoutTimer.UserControls
 			set { SetValue(IndicatorProperty, value); }
 		}
 
-		public int MaxValueIndicator
+		public float MaxValueIndicator
 		{
-			get { return (int)GetValue(MaxValueIndicatorProperty); }
+			get { return (float)GetValue(MaxValueIndicatorProperty); }
 			set { SetValue(MaxValueIndicatorProperty, value); }
 		}
 

@@ -38,7 +38,7 @@ namespace WorkoutTimer.Droid.Renderer
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-			if (e.PropertyName == "Indicator" || e.PropertyName == "Text")
+			if (e.PropertyName == "Indicator" || e.PropertyName == "Text" || e.PropertyName == "MaxValueIndicator")
 				Control.Invalidate();
 		}
 	}

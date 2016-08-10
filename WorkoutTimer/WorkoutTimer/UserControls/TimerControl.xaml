@@ -6,13 +6,17 @@
              VerticalOptions="Center"
              HeightRequest="40"
              WidthRequest="70">
+  <ContentView.Resources>
+    <ResourceDictionary>
+    </ResourceDictionary>
+  </ContentView.Resources>
   <Grid ColumnSpacing="2">
     <Grid.ColumnDefinitions>
       <ColumnDefinition/>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
-    <Picker x:Name="MinutesPicker" HorizontalOptions="End" VerticalOptions="Center" SelectedIndexChanged="MinutesPicker_OnSelectedIndexChanged" MeasureInvalidated="MinutesPicker_OnMeasureInvalidated">
+    <Picker x:Name="MinutesPicker" Title="Minutes" TextColor="#D8D8D8" HorizontalOptions="End" VerticalOptions="Center" SelectedIndexChanged="MinutesPicker_OnSelectedIndexChanged" MeasureInvalidated="MinutesPicker_OnMeasureInvalidated">
       <Picker.Items>
         <x:String>0</x:String>
         <x:String>1</x:String>
@@ -22,7 +26,7 @@
         <x:String>5</x:String>
       </Picker.Items>
     </Picker>
-    <Label Grid.Column="1" Text=":" VerticalTextAlignment="Center"/>
-    <Picker Grid.Column="2" x:Name="SecondsPicker" VerticalOptions="Center" SelectedIndexChanged="SecondsPicker_OnSelectedIndexChanged" MeasureInvalidated="SecondsPicker_OnMeasureInvalidated"/>
+    <Label Grid.Column="1" Text=":" VerticalTextAlignment="Center" TextColor="#D8D8D8"/>
+    <Picker Title="Seconds" Grid.Column="2" x:Name="SecondsPicker" TextColor="#D8D8D8" VerticalOptions="Center" SelectedIndexChanged="SecondsPicker_OnSelectedIndexChanged" MeasureInvalidated="SecondsPicker_OnMeasureInvalidated"/>
   </Grid>
 </ContentView>

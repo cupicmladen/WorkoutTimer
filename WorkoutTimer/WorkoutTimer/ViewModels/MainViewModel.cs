@@ -24,7 +24,7 @@ namespace WorkoutTimer.ViewModels
 			{
 				return new Command(() =>
 				{
-					
+
 				});
 			}
 		}
@@ -35,9 +35,11 @@ namespace WorkoutTimer.ViewModels
 			{
 				return new Command(async () =>
 				{
-					await PushAsync(new SecondPage());
+					var secondPage = new SecondPage { BindingContext = Settings };
+					await PushAsync(secondPage);
 				});
 			}
 		}
 	}
 }
+

@@ -5,7 +5,16 @@
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              xmlns:userControls="clr-namespace:WorkoutTimer.UserControls;assembly=WorkoutTimer"
              xmlns:models="clr-namespace:WorkoutTimer.Models;assembly=WorkoutTimer"
-             x:Class="WorkoutTimer.MainPage">
+             x:Class="WorkoutTimer.MainPage" BackgroundColor="#1A1A1A">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="Label">
+        <Setter Property="TextColor" Value="#D8D8D8"/>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="10"/>
@@ -19,14 +28,14 @@
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
     <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-      <Label Text="Rest between exercises" VerticalOptions="Center" TextColor="Black"/>
+      <Label Text="Rest between exercises" VerticalOptions="Center"/>
       <userControls:TimerControl Minutes="{Binding Settings.SetRest.Minutes}" Seconds="{Binding Settings.SetRest.Seconds}"/>
     </StackLayout>
     <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Spacing="40">
-      <Label Text="Rest between sets" VerticalOptions="Center" TextColor="Black"/>
+      <Label Text="Rest between sets" VerticalOptions="Center"/>
       <userControls:TimerControl Minutes="{Binding Settings.ExerciseRest.Minutes}" Seconds="{Binding Settings.ExerciseRest.Seconds}"/>
     </StackLayout>
-    <userControls:TabsEx Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" SelectedColor="Aqua" UnselectedColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <userControls:TabsEx Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" SelectedColor="#F88601" UnselectedColor="#D8D8D8" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
       <userControls:TabButtonsEx Orientation="Horizontal" Spacing="-8">
         <userControls:TabButtonEx
           Text="Monday"
@@ -69,7 +78,7 @@
           <Label BindingContext="{x:Reference Name=StepperM2}" Text="{Binding Value}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" FontAttributes="Bold"/>
           <Label BindingContext="{x:Reference Name=StepperM3}" Text="{Binding Value}" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" FontAttributes="Bold"/>
           <Label BindingContext="{x:Reference Name=StepperM4}" Text="{Binding Value}" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" FontAttributes="Bold"/>
-          <Stepper x:Name="StepperM1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.BenchPress}"/>
+          <Stepper x:Name="StepperM1" BackgroundColor="Transparent" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.BenchPress}"/>
           <Stepper x:Name="StepperM2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.InclineBench}"/>
           <Stepper x:Name="StepperM3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.DumbbellFlyes}"/>
           <Stepper x:Name="StepperM4" Grid.Column="2" Grid.Row="3" VerticalOptions="Center" Value="{Binding Settings.ChestDips}"/>
@@ -130,7 +139,7 @@
         </Grid>
       </userControls:TabEx>
     </userControls:TabsEx>
-    <Grid Grid.Row="4" Grid.Column="1">
+    <Grid Grid.Row="4" Grid.Column="1" Margin="0,0,0,10">
       <Button Text="Exit" HorizontalOptions="Start" WidthRequest="90" HeightRequest="40" Command="{Binding ExitCommand}"/>
       <Button Text="OK" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="90" HeightRequest="45" Command="{Binding NavigateToSecondPageCommand}"/>
     </Grid>
