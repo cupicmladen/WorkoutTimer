@@ -28,13 +28,15 @@
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
     <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-      <Label Text="Rest between exercises" VerticalOptions="Center"/>
-      <userControls:TimerControl Minutes="{Binding Settings.SetRest.Minutes}" Seconds="{Binding Settings.SetRest.Seconds}"/>
+      <Label Text="Rest between exercises" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,0,7"/>
+      <userControls:DurationControl Minutes="{Binding Settings.SetRest.Minutes, Mode=TwoWay}" Seconds="{Binding Settings.SetRest.Seconds, Mode=TwoWay}"/>
     </StackLayout>
+    <BoxView HeightRequest="0.5" Grid.Row="1" Grid.Column="1" Color="Red" VerticalOptions="End" Margin="0,0,20,8"/>
     <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Spacing="40">
-      <Label Text="Rest between sets" VerticalOptions="Center"/>
-      <userControls:TimerControl Minutes="{Binding Settings.ExerciseRest.Minutes}" Seconds="{Binding Settings.ExerciseRest.Seconds}"/>
+      <Label Text="Rest between sets" VerticalOptions="Start" HorizontalOptions="End" Margin="0,0,0,7"/>
+      <userControls:DurationControl Minutes="{Binding Settings.ExerciseRest.Minutes, Mode=TwoWay}" Seconds="{Binding Settings.ExerciseRest.Seconds, Mode=TwoWay}" BackgroundColor="Transparent"/>
     </StackLayout>
+    <BoxView HeightRequest="0.5" Grid.Row="2" Grid.Column="1" Color="Red" VerticalOptions="End" Margin="0,0,20,8"/>
     <userControls:TabsEx Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" SelectedColor="#F88601" UnselectedColor="#D8D8D8" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
       <userControls:TabButtonsEx Orientation="Horizontal" Spacing="-8">
         <userControls:TabButtonEx
@@ -139,9 +141,6 @@
         </Grid>
       </userControls:TabEx>
     </userControls:TabsEx>
-    <Grid Grid.Row="4" Grid.Column="1" Margin="0,0,0,10">
-      <Button Text="Exit" HorizontalOptions="Start" WidthRequest="90" HeightRequest="40" Command="{Binding ExitCommand}"/>
-      <Button Text="OK" HorizontalOptions="End" Margin="0,0,10,0" WidthRequest="90" HeightRequest="45" Command="{Binding NavigateToSecondPageCommand}"/>
-    </Grid>
+    <Button Text="Start" Grid.Row="4" Grid.Column="1" HorizontalOptions="End" Margin="10" WidthRequest="90" HeightRequest="45" Command="{Binding NavigateToSecondPageCommand}"/>
   </Grid>
 </ContentPage>

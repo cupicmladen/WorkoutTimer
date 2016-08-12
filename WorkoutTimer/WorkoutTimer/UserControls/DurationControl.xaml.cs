@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace WorkoutTimer.UserControls
 {
-	public partial class TimerControl : ContentView
+	public partial class DurationControl : ContentView
 	{
-		public TimerControl()
+		public DurationControl()
 		{
 			InitializeComponent();
 
@@ -20,8 +20,8 @@ namespace WorkoutTimer.UserControls
 			}
 		}
 
-		public static readonly BindableProperty MinutesProperty = BindableProperty.Create<TimerControl, int>(s => s.Minutes, 0);
-		public static readonly BindableProperty SecondsProperty = BindableProperty.Create<TimerControl, int>(s => s.Seconds, 0);
+		public static readonly BindableProperty MinutesProperty = BindableProperty.Create<DurationControl, int>(s => s.Minutes, 0);
+		public static readonly BindableProperty SecondsProperty = BindableProperty.Create<DurationControl, int>(s => s.Seconds, 0);
 
 		public int Minutes
 		{

@@ -51,10 +51,11 @@ namespace WorkoutTimer.Droid.Views
 			HandleArcDraw(p => canvas.DrawArc(rectF, 0, 360, false, p), CircularProgress.StrokeColor, CircularProgress.StrokeWidth);
 
 			HandleArcDraw(p => canvas.DrawArc(rectF, _startPosition, 360 * (CircularProgress.Indicator / CircularProgress.MaxValueIndicator), false, p), CircularProgress.IndicatorStrokeColor, CircularProgress.StrokeWidth);
-			//HandleTextDraw(p => canvas.DrawText(CircularProgress.Text, _cx, _cy - (p.Descent() / 2), p), CircularProgress.TextColor, 250);
-			canvas.DrawLine(rectF.Left, rectF.CenterY(), rectF.Right, rectF.CenterY(), new Paint() {Color = Color.Red});
+			//canvas.DrawLine(rectF.Left, rectF.CenterY(), rectF.Right, rectF.CenterY(), new Paint() { Color = Color.Red });
 			HandleTextDraw(p => canvas.DrawText(CircularProgress.Text, rectF.CenterX(), rectF.CenterY() + 90, p), CircularProgress.TextColor, 250);
-			//HandleTextDraw(p => canvas.DrawText(CircularProgress.Text, _cx, _cy + (p.Ascent() / 2) - p.Descent(), p), CircularProgress.TextColor, 250);
+
+			HandleTextDraw(p => canvas.DrawText("M", rectF.CenterX(), rectF.CenterY() + 90, p), CircularProgress.TextColor, 80);
+			HandleTextDraw(p => canvas.DrawText("S", rectF.CenterX() + 340, rectF.CenterY() + 90, p), CircularProgress.TextColor, 80);
 		}
 
 		private void HandleArcDraw(Action<Paint> drawShape, Xamarin.Forms.Color strokeColor, float lineWidth)

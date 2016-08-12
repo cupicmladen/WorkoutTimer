@@ -26,6 +26,7 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition />
+      <RowDefinition Height="Auto"/>
       <!--<RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>-->
     </Grid.RowDefinitions>
@@ -43,13 +44,15 @@
       StrokeColor="#2C2C2C"
       IndicatorStrokeColor="#C8F88601"
       StrokeWidth="15"
-      Text="00:00"
+      Text="00 00"
       TextColor="#F88601"
       Padding="40">
       <userControls:CircularProgress.GestureRecognizers>
         <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
       </userControls:CircularProgress.GestureRecognizers>
     </userControls:CircularProgress>
+    
+    <Label x:Name="PlusTime" Text="+ 00:00" FontSize="30" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" HorizontalOptions="Center" Margin="0,0,0,100"/>
     
     <!--<Button Text="Reset" Grid.Column="2" Grid.Row="6" HorizontalOptions="End" WidthRequest="90" HeightRequest="40"/>
     <Button Text="Back" Grid.Row="7" Grid.Column="1" WidthRequest="90" HeightRequest="40" HorizontalOptions="Start"/>-->

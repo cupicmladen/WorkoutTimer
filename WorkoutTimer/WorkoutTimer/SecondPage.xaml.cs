@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WorkoutTimer.Interfaces;
 using WorkoutTimer.Models;
 using Xamarin.Forms;
 
@@ -17,7 +19,9 @@ namespace WorkoutTimer
 			NavigationPage.SetHasNavigationBar(this, false);
 			BindingContextChanged += SecondPage_BindingContextChanged;
 
-			Device.StartTimer(TimeSpan.FromSeconds(1), Callback);
+			_audioService = DependencyService.Get<IAudioService>();
+
+			Device.StartTimer(TimeSpan.FromSeconds(1), TimerTick);
 		}
 
 		private void SecondPage_BindingContextChanged(object sender, EventArgs e)
@@ -48,16 +52,29 @@ namespace WorkoutTimer
 
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
+			if (_isTimerInProgress)
+				return;
+
+			if (!_isTimerStopped)
+			{
+				_isTimerStopped = true;
+				PlusTime.Text = "+ 00:00";
+				_plusTime = 0;
+				return;
+			}
+
+			_isTimerInProgress = true;
+
 			switch (_settings.SelectedDay)
 			{
 				case Day.Monday:
 					Monday();
 					break;
 				case Day.Wednesday:
-					Monday();
+					Wednesday();
 					break;
 				case Day.Friday:
-					Monday();
+					Friday();
 					break;
 				default:
 					break;
@@ -124,12 +141,6 @@ namespace WorkoutTimer
 			}
 		}
 
-		//private bool _isDeadLiftsOver;
-		//private bool _isReverseLegExtensionOver;
-		//private bool _isWidePullUpsOver;
-		//private bool _isNarrowPullUpsOver;
-		//private bool _isBentOverRowOver;
-
 		private bool SetLabelsAndTimer(string exerciseRestString, int workoutTotal, int nextWorkoutTotal, string nextExercise = "")
 		{
 			_workoutDone++;
@@ -153,46 +164,68 @@ namespace WorkoutTimer
 			return true;
 		}
 
-		private bool Callback()
+		private void AnimationTest()
+		{
+			var a = new Animation
+			{
+				{0, 0.5, new Animation(f => CircularProgress.Scale = f, 1, 1.2, Easing.Linear, null)},
+				{0.5, 1, new Animation(f => CircularProgress.Scale = f, 1.2, 1, Easing.Linear, null)}
+			};
+			//a.Commit(CircularProgress, "ScaleTo", 16, 700, null, null, () => true);
+
+			CircularProgress.Animate("ScaleTo", a, 16, 700, null, null, () => true);
+		}
+
+		private bool TimerTick()
 		{
 			_totalTimeInSeconds++;
 			var timespan = TimeSpan.FromSeconds(_totalTimeInSeconds);
 			TotalTime.Text = timespan.ToString(@"hh\:mm\:ss");
 
+			if (!_isTimerStopped)
+			{
+				_plusTime++;
+				var timespanPlus = TimeSpan.FromSeconds(_plusTime);
+				PlusTime.Text = "+ " + timespanPlus.ToString(@"mm\:ss");
+			}
+
 			if (_isSetRestPeriod)
 			{
-				_restSetTime--;
-				CircularProgress.Indicator = _restSetTime;
-
-				var timespanRest = TimeSpan.FromSeconds(_restSetTime);
-				CircularProgress.Text = timespanRest.ToString(@"mm\:ss");
-
-				if (_restSetTime == 0)
-				{
-					_isSetRestPeriod = false;
-					_restSetTime = _settings.SetRest.Minutes * 60 + _settings.SetRest.Seconds;
-				}
+				StartStopTimer(ref _restSetTime, ref _isSetRestPeriod);
 			}
 
 			if (_isRestExercisePeriod)
 			{
-				_restExerciseSeconds--;
-				CircularProgress.Indicator = _restExerciseSeconds;
-
-				var timespanExercise = TimeSpan.FromSeconds(_restExerciseSeconds);
-				CircularProgress.Text = timespanExercise.ToString(@"mm\:ss");
-
-				if (_restExerciseSeconds == 0)
-				{
-					_isRestExercisePeriod = false;
-					_restExerciseSeconds = _settings.ExerciseRest.Minutes * 60 + _settings.ExerciseRest.Seconds;
-				}
+				StartStopTimer(ref _restExerciseSeconds, ref _isRestExercisePeriod);
 			}
 
 			return true;
 		}
 
+		private void StartStopTimer(ref int time, ref bool restPeriod)
+		{
+			time--;
+			CircularProgress.Indicator = time;
+
+			var timespanRest = TimeSpan.FromSeconds(time);
+			CircularProgress.Text = timespanRest.ToString(@"mm\ ss");
+
+			if (time == 0)
+			{
+				restPeriod = false;
+				time = _settings.SetRest.Minutes * 60 + _settings.SetRest.Seconds;
+				_audioService.PlaySound();
+				_isTimerInProgress = false;
+				_isTimerStopped = false;
+			}
+		}
+
+		private readonly IAudioService _audioService;
+		private bool _isTimerInProgress;
+		private bool _isTimerStopped = true;
+
 		private int _totalTimeInSeconds = 0;
+		private int _plusTime = 0;
 		private Settings _settings;
 
 		private int _workoutDone = 0;
@@ -217,5 +250,13 @@ namespace WorkoutTimer
 		private bool _isWidePullUpsOver;
 		private bool _isNarrowPullUpsOver;
 		private bool _isBentOverRowOver;
+	}
+
+	public static class ReflectionHelpers
+	{
+		public static void SetPrivateField<T>(T item, string fieldName, object value)
+		{
+			typeof(T).GetTypeInfo().GetDeclaredField(fieldName).SetValue(item, value);
+		}
 	}
 }

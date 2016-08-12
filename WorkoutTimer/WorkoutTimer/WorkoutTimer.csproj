@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IAudioService.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -48,8 +49,8 @@
     </Compile>
     <Compile Include="UserControls\CircularProgress.cs" />
     <Compile Include="UserControls\TabControls.cs" />
-    <Compile Include="UserControls\TimerControl.xaml.cs">
-      <DependentUpon>TimerControl.xaml</DependentUpon>
+    <Compile Include="UserControls\DurationControl.xaml.cs">
+      <DependentUpon>DurationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseNavigationViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -82,7 +83,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UserControls\TimerControl.xaml">
+    <EmbeddedResource Include="UserControls\DurationControl.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
