@@ -35,11 +35,15 @@ namespace WorkoutTimer.ViewModels
 			{
 				return new Command(async () =>
 				{
-					var secondPage = new SecondPage { BindingContext = Settings };
-					await PushAsync(secondPage);
+					if(_secondPage == null)
+						_secondPage = new SecondPage { BindingContext = Settings };
+
+					await PushAsync(_secondPage);
 				});
 			}
 		}
+
+		private SecondPage _secondPage;
 	}
 }
 

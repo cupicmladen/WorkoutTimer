@@ -18,12 +18,12 @@
     </Grid.ColumnDefinitions>
     <Picker x:Name="MinutesPicker" Title="Minutes" TextColor="#D8D8D8" HorizontalOptions="End" VerticalOptions="Center" SelectedIndexChanged="MinutesPicker_OnSelectedIndexChanged" MeasureInvalidated="MinutesPicker_OnMeasureInvalidated">
       <Picker.Items>
-        <x:String>0</x:String>
-        <x:String>1</x:String>
-        <x:String>2</x:String>
-        <x:String>3</x:String>
-        <x:String>4</x:String>
-        <x:String>5</x:String>
+        <x:String>00</x:String>
+        <x:String>01</x:String>
+        <x:String>02</x:String>
+        <x:String>03</x:String>
+        <x:String>04</x:String>
+        <x:String>05</x:String>
       </Picker.Items>
     </Picker>
     <Label Grid.Column="1" Text=":" VerticalTextAlignment="Center" TextColor="#D8D8D8"/>

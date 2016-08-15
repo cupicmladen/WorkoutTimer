@@ -48,6 +48,9 @@
       <DependentUpon>SecondPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CircularProgress.cs" />
+    <Compile Include="UserControls\StepperControl.xaml.cs">
+      <DependentUpon>StepperControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TabControls.cs" />
     <Compile Include="UserControls\DurationControl.xaml.cs">
       <DependentUpon>DurationControl.xaml</DependentUpon>
@@ -90,6 +93,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SecondPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserControls\StepperControl.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

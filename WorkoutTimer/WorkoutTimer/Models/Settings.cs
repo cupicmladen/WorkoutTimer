@@ -10,8 +10,10 @@ namespace WorkoutTimer.Models
 {
 	public class Settings
 	{
-		public RestPeriod SetRest { get; set; } = new RestPeriod {Minutes = 0, Seconds = 10};
-		public RestPeriod ExerciseRest { get; set; } = new RestPeriod { Minutes = 0, Seconds = 20 };
+		//public RestPeriod SetRest { get; set; } = new RestPeriod {Minutes = 0, Seconds = 10};
+		//public RestPeriod ExerciseRest { get; set; } = new RestPeriod { Minutes = 0, Seconds = 20 };
+		public RestPeriod SetRest { get; set; } = new RestPeriod { Minutes = 1, Seconds = 30 };
+		public RestPeriod ExerciseRest { get; set; } = new RestPeriod { Minutes = 3, Seconds = 00 };
 		public Day SelectedDay { get; set; } = Day.Monday;
 
 		public int BenchPress { get; set; } = 4;

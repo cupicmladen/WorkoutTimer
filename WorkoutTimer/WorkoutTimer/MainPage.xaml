@@ -32,7 +32,7 @@
       <userControls:DurationControl Minutes="{Binding Settings.SetRest.Minutes, Mode=TwoWay}" Seconds="{Binding Settings.SetRest.Seconds, Mode=TwoWay}"/>
     </StackLayout>
     <BoxView HeightRequest="0.5" Grid.Row="1" Grid.Column="1" Color="Red" VerticalOptions="End" Margin="0,0,20,8"/>
-    <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Spacing="40">
+    <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Spacing="39">
       <Label Text="Rest between sets" VerticalOptions="Start" HorizontalOptions="End" Margin="0,0,0,7"/>
       <userControls:DurationControl Minutes="{Binding Settings.ExerciseRest.Minutes, Mode=TwoWay}" Seconds="{Binding Settings.ExerciseRest.Seconds, Mode=TwoWay}" BackgroundColor="Transparent"/>
     </StackLayout>
@@ -80,10 +80,10 @@
           <Label BindingContext="{x:Reference Name=StepperM2}" Text="{Binding Value}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" FontAttributes="Bold"/>
           <Label BindingContext="{x:Reference Name=StepperM3}" Text="{Binding Value}" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" FontAttributes="Bold"/>
           <Label BindingContext="{x:Reference Name=StepperM4}" Text="{Binding Value}" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" FontAttributes="Bold"/>
-          <Stepper x:Name="StepperM1" BackgroundColor="Transparent" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.BenchPress}"/>
-          <Stepper x:Name="StepperM2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.InclineBench}"/>
-          <Stepper x:Name="StepperM3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.DumbbellFlyes}"/>
-          <Stepper x:Name="StepperM4" Grid.Column="2" Grid.Row="3" VerticalOptions="Center" Value="{Binding Settings.ChestDips}"/>
+          <userControls:StepperControl x:Name="StepperM1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.BenchPress, Mode=TwoWay}"/>
+          <userControls:StepperControl x:Name="StepperM2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.InclineBench, Mode=TwoWay}"/>
+          <userControls:StepperControl x:Name="StepperM3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.DumbbellFlyes, Mode=TwoWay}"/>
+          <userControls:StepperControl x:Name="StepperM4" Grid.Column="2" Grid.Row="3" VerticalOptions="Center" Value="{Binding Settings.ChestDips, Mode=TwoWay}"/>
         </Grid>
       </userControls:TabEx>
       <userControls:TabEx IsVisible="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -104,9 +104,9 @@
           <Label BindingContext="{x:Reference Name=StepperW1}" Text="{Binding Value}" Grid.Column="1" VerticalOptions="Center" FontAttributes="Bold"/>
           <Label BindingContext="{x:Reference Name=StepperW2}" Text="{Binding Value}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" FontAttributes="Bold"/>
           <Label BindingContext="{x:Reference Name=StepperW3}" Text="{Binding Value}" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" FontAttributes="Bold"/>
-          <Stepper x:Name="StepperW1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.Squats}"/>
-          <Stepper x:Name="StepperW2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.LegExtension}"/>
-          <Stepper x:Name="StepperW3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.FrontSquats}"/>
+          <userControls:StepperControl x:Name="StepperW1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.Squats, Mode=TwoWay}"/>
+          <userControls:StepperControl x:Name="StepperW2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.LegExtension, Mode=TwoWay}"/>
+          <userControls:StepperControl x:Name="StepperW3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.FrontSquats, Mode=TwoWay}"/>
         </Grid>
       </userControls:TabEx>
       <userControls:TabEx IsVisible="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -133,11 +133,11 @@
           <Label BindingContext="{x:Reference Name=StepperF3}" Text="{Binding Value}" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" FontAttributes="Bold"/>
           <Label BindingContext="{x:Reference Name=StepperF4}" Text="{Binding Value}" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" FontAttributes="Bold"/>
           <Label BindingContext="{x:Reference Name=StepperF5}" Text="{Binding Value}" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" FontAttributes="Bold"/>
-          <Stepper x:Name="StepperF1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.DeadLifts}"/>
-          <Stepper x:Name="StepperF2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.ReverseLegExtension}"/>
-          <Stepper x:Name="StepperF3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.WidePullUps}"/>
-          <Stepper x:Name="StepperF4" Grid.Column="2" Grid.Row="3" VerticalOptions="Center" Value="{Binding Settings.NarrowPullUps}"/>
-          <Stepper x:Name="StepperF5" Grid.Column="2" Grid.Row="4" VerticalOptions="Center" Value="{Binding Settings.BentOverRow}"/>
+          <userControls:StepperControl x:Name="StepperF1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.DeadLifts, Mode=TwoWay}"/>
+          <userControls:StepperControl x:Name="StepperF2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.ReverseLegExtension, Mode=TwoWay}"/>
+          <userControls:StepperControl x:Name="StepperF3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.WidePullUps, Mode=TwoWay}"/>
+          <userControls:StepperControl x:Name="StepperF4" Grid.Column="2" Grid.Row="3" VerticalOptions="Center" Value="{Binding Settings.NarrowPullUps, Mode=TwoWay}"/>
+          <userControls:StepperControl x:Name="StepperF5" Grid.Column="2" Grid.Row="4" VerticalOptions="Center" Value="{Binding Settings.BentOverRow, Mode=TwoWay}"/>
         </Grid>
       </userControls:TabEx>
     </userControls:TabsEx>

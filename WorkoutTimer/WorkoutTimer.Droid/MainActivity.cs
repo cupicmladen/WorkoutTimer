@@ -45,6 +45,14 @@ namespace WorkoutTimer.Droid
 
 		}
 
+		protected override void OnDestroy()
+		{
+			var notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
+			notificationManager.CancelAll();
+
+			base.OnDestroy();
+		}
+
 		private void SendMessage()
 		{
 			var notificationIntent = new Intent(this, typeof(MainActivity));
