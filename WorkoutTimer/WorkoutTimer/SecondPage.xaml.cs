@@ -29,7 +29,7 @@ namespace WorkoutTimer
 			_settings = BindingContext as Settings;
 
 			_restSetTime = _settings.SetRest.Minutes * 60 + _settings.SetRest.Seconds;
-			_restExerciseSeconds = _settings.ExerciseRest.Minutes * 60 + _settings.ExerciseRest.Seconds;
+			_restExerciseTime = _settings.ExerciseRest.Minutes * 60 + _settings.ExerciseRest.Seconds;
 
 			switch (_settings.SelectedDay)
 			{
@@ -53,7 +53,10 @@ namespace WorkoutTimer
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
 			if (_isTimerInProgress)
+			{
+				ForceStopTimer();
 				return;
+			}
 
 			if (!_isTimerStopped)
 			{
@@ -79,6 +82,21 @@ namespace WorkoutTimer
 				default:
 					break;
 			}
+		}
+
+		private void ForceStopTimer()
+		{
+			_isTimerStopped = true;
+			_isTimerInProgress = false;
+
+			_isSetRestPeriod = false;
+			_isRestExercisePeriod = false;
+
+			_restSetTime = _settings.SetRest.Minutes * 60 + _settings.SetRest.Seconds;
+			_restExerciseTime = _settings.ExerciseRest.Minutes * 60 + _settings.ExerciseRest.Seconds;
+
+			CircularProgress.Indicator = 0;
+			CircularProgress.Text = "00 00";
 		}
 
 		private void Monday()
@@ -156,8 +174,8 @@ namespace WorkoutTimer
 
 			SetsToGo.Text = exerciseRestString;
 			Exercise.Text = nextExercise;
-			CircularProgress.MaxValueIndicator = _restExerciseSeconds;
-			CircularProgress.Indicator = _restExerciseSeconds;
+			CircularProgress.MaxValueIndicator = _restExerciseTime;
+			CircularProgress.Indicator = _restExerciseTime;
 			_isRestExercisePeriod = true;
 			_workoutDone = 0;
 			SetsToGo.Text = "0 sets done, " + nextWorkoutTotal + " more to go!";
@@ -196,7 +214,7 @@ namespace WorkoutTimer
 
 			if (_isRestExercisePeriod)
 			{
-				StartStopTimer(ref _restExerciseSeconds, ref _isRestExercisePeriod);
+				StartStopTimer(ref _restExerciseTime, ref _isRestExercisePeriod);
 			}
 
 			return true;
@@ -231,7 +249,7 @@ namespace WorkoutTimer
 		private int _workoutDone = 0;
 
 		private int _restSetTime;
-		private int _restExerciseSeconds;
+		private int _restExerciseTime;
 
 		private bool _isSetRestPeriod;
 		private bool _isRestExercisePeriod;
