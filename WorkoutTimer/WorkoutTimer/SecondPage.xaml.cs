@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using WorkoutTimer.Interfaces;
 using WorkoutTimer.Models;
 using Xamarin.Forms;
@@ -52,7 +47,7 @@ namespace WorkoutTimer
 
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
-			if (_isTimerInProgress)
+			if (_isTimerInProgress || _isLastSet)
 			{
 				ForceStopTimer();
 				return;
@@ -97,6 +92,15 @@ namespace WorkoutTimer
 
 			CircularProgress.Indicator = 0;
 			CircularProgress.Text = "00 00";
+
+			PlusTime.Text = "+ 00:00";
+			_plusTime = 0;
+
+			if (_isLastSet)
+			{
+				Exercise.Text = "";
+				SetsToGo.Text = "WORKOUT DONE";
+			}
 		}
 
 		private void Monday()
@@ -169,6 +173,9 @@ namespace WorkoutTimer
 				CircularProgress.MaxValueIndicator = _restSetTime;
 				CircularProgress.Indicator = _restSetTime;
 				_isSetRestPeriod = true;
+
+				_isLastSet = nextWorkoutTotal == 0 && _workoutDone == workoutTotal - 1;
+
 				return false;
 			}
 
@@ -238,9 +245,15 @@ namespace WorkoutTimer
 			}
 		}
 
+		private void EndWorkoutButton_OnClicked(object sender, EventArgs e)
+		{
+
+		}
+
 		private readonly IAudioService _audioService;
 		private bool _isTimerInProgress;
 		private bool _isTimerStopped = true;
+		private bool _isLastSet;
 
 		private int _totalTimeInSeconds = 0;
 		private int _plusTime = 0;
@@ -268,13 +281,5 @@ namespace WorkoutTimer
 		private bool _isWidePullUpsOver;
 		private bool _isNarrowPullUpsOver;
 		private bool _isBentOverRowOver;
-	}
-
-	public static class ReflectionHelpers
-	{
-		public static void SetPrivateField<T>(T item, string fieldName, object value)
-		{
-			typeof(T).GetTypeInfo().GetDeclaredField(fieldName).SetValue(item, value);
-		}
 	}
 }
