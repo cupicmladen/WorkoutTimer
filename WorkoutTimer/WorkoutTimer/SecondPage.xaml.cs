@@ -58,6 +58,7 @@ namespace WorkoutTimer
 				_isTimerStopped = true;
 				PlusTime.Text = "+ 00:00";
 				_plusTime = 0;
+				CircularProgress.ShowWarning = false;
 				return;
 			}
 
@@ -95,6 +96,7 @@ namespace WorkoutTimer
 
 			PlusTime.Text = "+ 00:00";
 			_plusTime = 0;
+			CircularProgress.ShowWarning = false;
 
 			if (_isLastSet)
 			{
@@ -212,6 +214,7 @@ namespace WorkoutTimer
 
 			if (!_isTimerStopped)
 			{
+				CircularProgress.ShowWarning = !CircularProgress.ShowWarning;
 				_plusTime++;
 				var timespanPlus = TimeSpan.FromSeconds(_plusTime);
 				PlusTime.Text = "+ " + timespanPlus.ToString(@"mm\:ss");

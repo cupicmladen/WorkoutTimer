@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace WorkoutTimer.UserControls
 {
@@ -19,6 +20,8 @@ namespace WorkoutTimer.UserControls
 		public static readonly BindableProperty TextColorProperty = BindableProperty.Create<CircularProgress, Color>(s => s.TextColor, Color.Default);
 
 		public static readonly BindableProperty PaddingProperty = BindableProperty.Create<CircularProgress, Thickness>(s => s.Padding, default(Thickness));
+
+		public static readonly BindableProperty ShowWarningProperty = BindableProperty.Create<CircularProgress, bool>(s => s.ShowWarning, false);
 
 		public Color StrokeColor
 		{
@@ -66,6 +69,12 @@ namespace WorkoutTimer.UserControls
 		{
 			get { return (Thickness)GetValue(PaddingProperty); }
 			set { SetValue(PaddingProperty, value); }
+		}
+
+		public bool ShowWarning
+		{
+			get { return (bool)GetValue(ShowWarningProperty); }
+			set { SetValue(ShowWarningProperty, value); }
 		}
 	}
 }

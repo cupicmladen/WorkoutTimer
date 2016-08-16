@@ -47,15 +47,27 @@ namespace WorkoutTimer.Droid.Views
 			_cx = _x + Width / 2;
 			_cy = _y + Height / 2;
 
-			var rectF = GetPortraitRectF();
-			HandleArcDraw(p => canvas.DrawArc(rectF, 0, 360, false, p), CircularProgress.StrokeColor, CircularProgress.StrokeWidth);
+			rectF = GetPortraitRectF();
+			if (CircularProgress.ShowWarning)
+			{
+				HandleRadialDraw(p => canvas.DrawCircle(rectF.CenterX(), rectF.CenterY(), Width / 2, p));
+			}
 
+			HandleArcDraw(p => canvas.DrawArc(rectF, 0, 360, false, p), CircularProgress.StrokeColor, CircularProgress.StrokeWidth);
 			HandleArcDraw(p => canvas.DrawArc(rectF, _startPosition, 360 * (CircularProgress.Indicator / CircularProgress.MaxValueIndicator), false, p), CircularProgress.IndicatorStrokeColor, CircularProgress.StrokeWidth);
-			//canvas.DrawLine(rectF.Left, rectF.CenterY(), rectF.Right, rectF.CenterY(), new Paint() { Color = Color.Red });
 			HandleTextDraw(p => canvas.DrawText(CircularProgress.Text, rectF.CenterX(), rectF.CenterY() + 90, p), CircularProgress.TextColor, 250);
 
 			HandleTextDraw(p => canvas.DrawText("M", rectF.CenterX(), rectF.CenterY() + 90, p), CircularProgress.TextColor, 80);
 			HandleTextDraw(p => canvas.DrawText("S", rectF.CenterX() + 340, rectF.CenterY() + 90, p), CircularProgress.TextColor, 80);
+		}
+
+		private void HandleRadialDraw(Action<Paint> drawShape)
+		{
+			var fillPaint = new Paint();
+			fillPaint.SetStyle(Paint.Style.Fill);
+			var radialGradient = new RadialGradient(rectF.CenterX(), rectF.CenterY(), Width / 2, Color.Red, Color.Black, Shader.TileMode.Clamp);
+			fillPaint.SetShader(radialGradient);
+			drawShape(fillPaint);
 		}
 
 		private void HandleArcDraw(Action<Paint> drawShape, Xamarin.Forms.Color strokeColor, float lineWidth)
@@ -104,12 +116,13 @@ namespace WorkoutTimer.Droid.Views
 			return Resize((float)input);
 		}
 
+		private RectF rectF;
 		private readonly float _density;
 		private readonly float _startPosition = -90;
 		private float _x;
 		private float _y;
 		private float _cx;
 		private float _cy;
-		private float _radius;
+		//private float _radius;
 	}
 }
