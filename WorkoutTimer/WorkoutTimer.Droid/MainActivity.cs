@@ -3,6 +3,7 @@
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Content.Res;
 using Android.Media;
 using Android.Runtime;
 using Android.Views;
@@ -28,6 +29,8 @@ namespace WorkoutTimer.Droid
 
 			var color = Color.FromHex("#1A1A1A");
 			SetStatusBarColor(color.ToAndroid());
+
+			Window.SetFlags(WindowManagerFlags.KeepScreenOn, WindowManagerFlags.KeepScreenOn);
 		}
 
 		protected override void OnPause()

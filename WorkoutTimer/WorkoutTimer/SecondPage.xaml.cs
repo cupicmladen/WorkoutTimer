@@ -203,6 +203,9 @@ namespace WorkoutTimer
 
 		private bool TimerTick()
 		{
+			if (_isTotalTimeStopped)
+				return false;
+
 			_totalTimeInSeconds++;
 			var timespan = TimeSpan.FromSeconds(_totalTimeInSeconds);
 			TotalTime.Text = timespan.ToString(@"hh\:mm\:ss");
@@ -247,13 +250,14 @@ namespace WorkoutTimer
 
 		private void EndWorkoutButton_OnClicked(object sender, EventArgs e)
 		{
-
+			_isTotalTimeStopped = true;
 		}
 
 		private readonly IAudioService _audioService;
 		private bool _isTimerInProgress;
 		private bool _isTimerStopped = true;
 		private bool _isLastSet;
+		private bool _isTotalTimeStopped;
 
 		private int _totalTimeInSeconds = 0;
 		private int _plusTime = 0;
