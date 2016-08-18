@@ -66,6 +66,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -84,6 +85,9 @@
           <userControls:StepperControl x:Name="StepperM2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.InclineBench, Mode=TwoWay}"/>
           <userControls:StepperControl x:Name="StepperM3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.DumbbellFlyes, Mode=TwoWay}"/>
           <userControls:StepperControl x:Name="StepperM4" Grid.Column="2" Grid.Row="3" VerticalOptions="Center" Value="{Binding Settings.ChestDips, Mode=TwoWay}"/>
+          <BoxView HeightRequest="30" Grid.Row="4" Grid.ColumnSpan="3" Color="Gray" VerticalOptions="Center"/>
+          <Label Text="Total sum of sets" Grid.Row="4" VerticalOptions="Center" Margin="10,0,0,0" FontAttributes="Bold" TextColor="Black"/>
+          <Label Text="{Binding Settings.MondayTotalSets}" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
         </Grid>
       </userControls:TabEx>
       <userControls:TabEx IsVisible="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -92,6 +96,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -107,6 +112,9 @@
           <userControls:StepperControl x:Name="StepperW1" Grid.Column="2" VerticalOptions="Center" Value="{Binding Settings.Squats, Mode=TwoWay}"/>
           <userControls:StepperControl x:Name="StepperW2" Grid.Column="2" Grid.Row="1" VerticalOptions="Center" Value="{Binding Settings.LegExtension, Mode=TwoWay}"/>
           <userControls:StepperControl x:Name="StepperW3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.FrontSquats, Mode=TwoWay}"/>
+          <BoxView HeightRequest="30" Grid.Row="3" Grid.ColumnSpan="3" Color="Gray" VerticalOptions="Center"/>
+          <Label Text="Total sum of sets" Grid.Row="3" VerticalOptions="Center" Margin="10,0,0,0" FontAttributes="Bold" TextColor="Black"/>
+          <Label Text="{Binding Settings.WednesdayTotalSets}" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
         </Grid>
       </userControls:TabEx>
       <userControls:TabEx IsVisible="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -117,6 +125,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -138,6 +147,9 @@
           <userControls:StepperControl x:Name="StepperF3" Grid.Column="2" Grid.Row="2" VerticalOptions="Center" Value="{Binding Settings.WidePullUps, Mode=TwoWay}"/>
           <userControls:StepperControl x:Name="StepperF4" Grid.Column="2" Grid.Row="3" VerticalOptions="Center" Value="{Binding Settings.NarrowPullUps, Mode=TwoWay}"/>
           <userControls:StepperControl x:Name="StepperF5" Grid.Column="2" Grid.Row="4" VerticalOptions="Center" Value="{Binding Settings.BentOverRow, Mode=TwoWay}"/>
+          <BoxView HeightRequest="30" Grid.Row="5" Grid.ColumnSpan="3" Color="Gray" VerticalOptions="Center"/>
+          <Label Text="Total sum of sets" Grid.Row="5" VerticalOptions="Center" Margin="10,0,0,0" FontAttributes="Bold" TextColor="Black"/>
+          <Label Text="{Binding Settings.FridayTotalSets}" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
         </Grid>
       </userControls:TabEx>
     </userControls:TabsEx>

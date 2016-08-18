@@ -90,6 +90,8 @@ namespace WorkoutTimer.ViewModels
 
 		public IReadOnlyList<Page> ModalStack => _Navigation?.ModalStack;
 
+		public NavigationPage NavigationPage => Application.Current?.MainPage as NavigationPage;
+
 		#endregion
 	}
 }

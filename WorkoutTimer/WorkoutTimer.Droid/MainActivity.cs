@@ -47,6 +47,11 @@ namespace WorkoutTimer.Droid
 
 		}
 
+		public override void OnBackPressed()
+		{
+			MoveTaskToBack(true);
+		}
+
 		protected override void OnDestroy()
 		{
 			var notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);

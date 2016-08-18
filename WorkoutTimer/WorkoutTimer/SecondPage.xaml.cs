@@ -133,7 +133,7 @@ namespace WorkoutTimer
 			}
 			else if (!_isLegExtensionOver)
 			{
-				_isLegExtensionOver = SetLabelsAndTimer("NEXT FRON SQUATS", _settings.LegExtension, _settings.FrontSquats, "FRON SQUATS");
+				_isLegExtensionOver = SetLabelsAndTimer("NEXT FRONT SQUATS", _settings.LegExtension, _settings.FrontSquats, "FRON SQUATS");
 			}
 			else if (!_isFrontSquatsOver)
 			{

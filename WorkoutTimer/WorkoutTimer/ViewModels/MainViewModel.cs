@@ -38,7 +38,8 @@ namespace WorkoutTimer.ViewModels
 					if(_secondPage == null)
 						_secondPage = new SecondPage { BindingContext = Settings };
 
-					await PushAsync(_secondPage);
+					InsertPageBefore(_secondPage, NavigationPage.CurrentPage);
+					await PopAsync().ConfigureAwait(false);
 				});
 			}
 		}
