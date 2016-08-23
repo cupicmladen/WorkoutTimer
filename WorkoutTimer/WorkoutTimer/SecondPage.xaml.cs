@@ -243,8 +243,11 @@ namespace WorkoutTimer
 
 			if (time == 0)
 			{
+				if(_isRestExercisePeriod)
+					time = _settings.ExerciseRest.Minutes * 60 + _settings.ExerciseRest.Seconds;
+				else
+					time = _settings.SetRest.Minutes * 60 + _settings.SetRest.Seconds;
 				restPeriod = false;
-				time = _settings.SetRest.Minutes * 60 + _settings.SetRest.Seconds;
 				_audioService.PlaySound();
 				_isTimerInProgress = false;
 				_isTimerStopped = false;
